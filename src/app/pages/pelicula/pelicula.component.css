@@ -1,0 +1,25 @@
+.stars-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .stars-container .fa-star {
+    margin-right: 2px;
+    color: #ffcc00; 
+  }
+  
+  .text-justify {
+    text-align: justify;
+  }
+  
+  img {
+    max-width: 80%;
+    border-radius: 8px;
+  }
+  
+  .btn-info {
+    color: #fff;
+    background-color: #17a2b8;
+    border: none;
+  }
+  

@@ -1,0 +1,13 @@
+<p>buscar works!</p>
+<h1 class="text-capitalize">Buscar Pelicula <small>{{texto}}</small></h1>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <h3 class="text-warning" *ngIf="noMovie">
+      {{ noMovie }} 
+    </h3>
+
+    <app-banners-peliculas [movies]="movies" *ngIf="movies.length > 0"></app-banners-peliculas>
+  </div>
+</div>

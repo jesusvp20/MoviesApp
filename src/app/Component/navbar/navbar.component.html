@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
+  <div class="container-fluid">
+    <a class="navbar-brand text-white cursor"(click)="goHome('home')"><i class="fas fa-film"></i> Movie App</a> 
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+      <div class="d-flex" role="search">
+
+        <input #txtBuscar class="form-control me-2" type="search" 
+               (keyup.enter)="buscarPelicula(txtBuscar.value)"
+               placeholder="Buscar Pelicula">
+        <button class="btn btn-outline-light" type="button" 
+                (click)="buscarPelicula(txtBuscar.value)">Buscar</button>
+      </div>
+    </div>
+  </div>
+</nav>

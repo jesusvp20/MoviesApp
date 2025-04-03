@@ -1,0 +1,41 @@
+<div class="swiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide" 
+             *ngFor="let movie of movies"
+             [ngStyle]="{
+                'background-image': 'url(https://image.tmdb.org/t/p/w500/' + (movie.backdrop_path || '') + ')'
+             }">
+             <div *ngIf="!movie.backdrop_path" class="fallback-image">
+               {{ movie.title }}
+             </div>
+            
+            <div class="movie-description">
+                <h3>{{ movie.title }}</h3>
+                <div class="mt-2">
+                  <span class="badge bg-primary me-2">{{ movie.vote_average | number:'1.1-1' }}</span>
+                  <span>{{ movie.release_date | date:'yyyy' }}</span>
+                </div>
+                
+                <p *ngIf="movie.overview" class="mt-2">
+                    {{ showFullDescription[movie.id] ? movie.overview : (movie.overview | slice:0:130) }}
+                    <span *ngIf="!showFullDescription[movie.id] && movie.overview.length > 130">...</span>
+                </p>
+
+                <div class="d-flex gap-2 mt-3">
+                  <button class="btn btn-outline-light btn-sm"  
+                    (click)="toggleDescription(movie.id)">
+                    {{ showFullDescription[movie.id] ? 'Ver menos' : 'Leer más' }}
+                  </button>
+                  <button class="btn btn-primary btn-sm" 
+                  (click)="onMovieClick(movie)">
+                  Detalles completos
+                </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev" (click)="onSlidePrev()"></div>
+    <div class="swiper-button-next" (click)="onSlideNext()"></div>
+</div>

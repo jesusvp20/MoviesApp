@@ -1,0 +1,61 @@
+<div class="row g-4" *ngIf="pelicula">
+  <!-- Columna del póster -->
+  <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
+    <img
+      [src]="pelicula.poster_path | banner"
+      class="img-fluid rounded shadow"
+      [alt]="pelicula.title"
+    />
+  </div>
+
+  <!-- Columna de detalles -->
+  <div class="col-12 col-md-6 text-white">
+    <h2 class="mb-3">{{ pelicula.title }}</h2>
+
+    <!-- Calificación (estrellas + valor numérico) -->
+    <div class="d-flex align-items-center mb-3">
+      <div class="me-2" *ngIf="pelicula.vote_average">
+        <div class="stars-container">
+          <i
+            *ngFor="let star of getStars(pelicula.vote_average)"
+            class="fas fa-star"
+          ></i>
+        </div>
+      </div>
+      <span class="fw-bold">
+        {{ pelicula.vote_average | number: '1.1-2' }}
+      </span>
+    </div>
+
+    <!-- Sinopsis -->
+    <h4 class="mb-2">Sinopsis</h4>
+    <p class="text-justify" *ngIf="pelicula.overview; else sinSinopsis">
+      {{ pelicula.overview }}
+    </p>
+    <ng-template #sinSinopsis>
+      <p>Sin sinopsis disponible</p>
+    </ng-template>
+
+    <!-- Fecha de estreno -->
+    <p class="text-warning mb-4">
+      Fecha de estreno:
+      {{ pelicula.release_date | date: 'dd/MM/yyyy' }}
+    </p>
+
+    <button
+      class="btn btn-info"
+      (click)="Regresar()"
+    >
+      Regresar
+    </button>
+  </div>
+</div>
+
+<hr class="my-4" />
+
+<div class="row" *ngIf="casting.length > 0">
+  <div class="col">
+    <h3 class="text-white mb-3">Reparto</h3>
+    <app-cast-slide-show [cast]="casting"></app-cast-slide-show>
+  </div>
+</div>
